@@ -1,0 +1,13 @@
+def solution(x, y, n):
+    
+    depth_list = [1000000] * (y+1)
+    depth_list[x] = 0
+    
+    for i in range(x, y+1):
+        for op in [i*2, i*3, i+n]:
+            if op <= y:
+                depth_list[op] = min(depth_list[op], depth_list[i] + 1)
+    
+    if depth_list[y] != 1000000:
+        return depth_list[y]
+    return -1
